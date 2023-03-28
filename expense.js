@@ -29,6 +29,19 @@ function addEvent(e){
     })
     shoeExpences(obj);
 }
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get('https://crudcrud.com/api/fed3828f5c294e50a0c10407f749d5dd/expenceData')
+    .then((res)=>{
+        console.log(res);
+        for(var i=0;i<res.data.length;i++){
+            shoeExpences(res.data[i]);
+        }
+        
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
 
 function shoeExpences(obj){
     const parent=document.getElementById('showing');
