@@ -55,8 +55,17 @@ function shoeExpences(obj){
     deleteBtn.type='button';
     deleteBtn.value='Delete';
     deleteBtn.onclick= ()=>{
-        localStorage.removeItem(obj.description);
-        parent.removeChild(child);
+        //localStorage.removeItem(obj.description);
+        axios.delete(`https://crudcrud.com/api/fed3828f5c294e50a0c10407f749d5dd/expenceData/${obj._id}`)
+        .then((res)=>{
+            parent.removeChild(child);
+            console.log(res);
+            console.log(obj.id);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+       
     }  
 
     const edit=document.createElement('input');
