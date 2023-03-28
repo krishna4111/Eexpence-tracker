@@ -74,12 +74,25 @@ function shoeExpences(obj){
     edit.value='Edit';
     edit.type='button';
     edit.onclick=()=>{
-        localStorage.removeItem(obj.description)
-        parent.removeChild(child);
-        document.getElementById('desc').value=obj.description.value;
-        document.getElementById('amount').value=obj.amount.value;
-        document.getElementById('cata').value=obj.catagory.value;
-        localStorage.setItem(object.description,JSON.stringify(obj));
+        //localStorage.removeItem(obj.description)
+        axios.put(`https://crudcrud.com/api/fed3828f5c294e50a0c10407f749d5dd/expenceData/${obj._id}`,{
+            amount:obj.amount.value,
+            description:obj.description.value,
+            catagory:obj.catagory.value
+        })
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+        // parent.removeChild(child);
+        // parent.appendChild(child);
+        // document.getElementById('desc').value=obj.description.value;
+        // document.getElementById('amount').value=obj.amount.value;
+        // document.getElementById('cata').value=obj.catagory.value;
+        
+        //localStorage.setItem(object.description,JSON.stringify(obj));
     }
     child.appendChild(deleteBtn);
     child.appendChild(edit);
